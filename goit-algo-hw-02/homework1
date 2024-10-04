@@ -1,0 +1,29 @@
+import queue
+import random
+import time
+
+request_queue = queue.Queue()
+
+
+def create_request():
+    request_id = random.randint(1, 1000)
+    print(f"New request created: {request_id}")
+    request_queue.put(request_id)
+
+
+def handle_request():
+    if not request_queue.empty():
+        request_id = request_queue.get()
+        print(f"Handling request: {request_id}")
+    else:
+        print("No requests to process")
+
+
+try:
+    while True:
+        create_request()
+        handle_request()
+        time.sleep(1)
+
+except KeyboardInterrupt:
+    print("Shutting down the application.")

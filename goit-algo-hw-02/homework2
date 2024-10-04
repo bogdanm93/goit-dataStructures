@@ -1,0 +1,23 @@
+from collections import deque
+def check_palindrome(s):
+    s = ''.join(s.lower().split())
+
+    chars = deque(s)
+
+    while len(chars) > 1:
+        if chars.popleft() != chars.pop():
+            return False
+
+    return True
+
+sample_strings = [
+    "A man a plan a canal Panama",
+    "Racecar",
+    "Hello",
+    "Was it a car or a cat I saw",
+    "No lemon no melon"
+]
+
+for string in sample_strings:
+    result = check_palindrome(string)
+    print(f"'{string}' is a palindrome: {result}")
